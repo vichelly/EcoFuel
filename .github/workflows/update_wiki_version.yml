@@ -1,0 +1,27 @@
+name: Atualizar Versão da Wiki
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "wiki/**"  # Monitora mudanças na Wiki
+
+jobs:
+  update-wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar a Wiki
+        run: |
+          git clone https://github.com/SEU_USUARIO/SEU_REPOSITORIO.wiki.git wiki
+          cd wiki
+
+      - name: Atualizar a Versão
+        run: |
+          cd wiki
+          sed -i 's/_Versão: \([0-9]\+\)\.\([0-9]\+\)_/_Versão: \1.\2+1_/' Home.md  # Atualiza versão automaticamente
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Incrementando versão automaticamente"
+          git push

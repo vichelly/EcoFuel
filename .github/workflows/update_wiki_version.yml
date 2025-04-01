@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Clonar a Wiki
         run: |
-          git clone https://github.com/RafLeal/EcoFuel.wiki.git wiki
+          git clone https://github.com/vichelly/EcoFuel.wiki.git wiki
           cd wiki
           
       - name: Atualizar a Versão
